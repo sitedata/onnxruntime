@@ -598,7 +598,7 @@ TEST(ReductionOpTest, ReduceMax_int32) {
 #if defined(OPENVINO_CONFIG_GPU_FP32)
   test.Run(OpTester::ExpectResult::kExpectSuccess, "", {kTensorrtExecutionProvider, kOpenVINOExecutionProvider});  // OpenVINO: Disabled temporarily
 #else
-  test.Run(OpTester::ExpectResult::kExpectSuccess, "", {kTensorrtExecutionProvider});                          //TensorRT: axis must be 0
+  test.Run(OpTester::ExpectResult::kExpectSuccess, "", {kTensorrtExecutionProvider});  //TensorRT: axis must be 0
 #endif
 }
 
@@ -1377,14 +1377,14 @@ TEST(ReductionOpTest, ReduceSumTraining_empty_axes_noop) {
                         11.0f, 12.0f});
   //test.AddInput<int64_t>("axes", {0}, {}, true /*is_initializer*/);
   test.AddInput<int64_t>("axes", {0}, {});
-  test.AddOutput<float>("reduced", {3, 2, 2}, 
-                        {1.0f, 2.0f, 
+  test.AddOutput<float>("reduced", {3, 2, 2},
+                        {1.0f, 2.0f,
                          3.0f, 4.0f,
 
-                         5.0f, 6.0f, 
+                         5.0f, 6.0f,
                          7.0f, 8.0f,
 
-                         9.0f, 10.0f, 
+                         9.0f, 10.0f,
                          11.0f, 12.0f});
   test.Run();
 }
